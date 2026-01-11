@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
           <span className="material-symbols-outlined text-2xl font-bold">grid_view</span>
         </div>
         <h1 className="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight hidden md:block">
-          ERP Empresarial
+          ERP Grupo Locar
         </h1>
       </div>
 

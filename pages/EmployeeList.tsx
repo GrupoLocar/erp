@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Employee, EmployeeStatus, CNHStatus, User } from '../types';
 import * as XLSX from 'xlsx';
 import { jsPDF } from 'jspdf';
@@ -64,9 +65,15 @@ const BANCOS = [
 
 interface EmployeeListProps {
   user?: User;
+  /** Quando true, a tela abre automaticamente o fluxo de "Novo Funcionário" (modal fullscreen). */
+  autoOpenNew?: boolean;
+  /** Se informado, ao fechar o modal (novo/editar) o usuário é redirecionado para esta rota. */
+  onCloseRedirectPath?: string;
 }
 
-const EmployeeList: React.FC<EmployeeListProps> = ({ user }) => {
+const EmployeeList: React.FC<EmployeeListProps> = ({ user, autoOpenNew = false, onCloseRedirectPath }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   // Evita tela branca quando a rota não fornece "user"
   const safeUser: User = (user ?? { role: 'User', name: 'Usuário' }) as User;
 
@@ -306,9 +313,36 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ user }) => {
   // =========================
   // CRUD (Backend)
   // =========================
-  const handleAddNew = () => {
+  const openNewEmployeeModal = () => {
     setEditingEmployee({ ...INITIAL_EMPLOYEE_STATE, id: `EMP${Date.now().toString().slice(-6)}` });
     setActiveTab('Identificação');
+  };
+
+  // Clique no botão "Novo" deve levar para a rota dedicada (mantém deep-link e refresh-safe)
+  const handleAddNew = () => {
+    navigate('/rh/employees/new');
+  };
+
+  // Se esta instância foi montada para a rota /rh/employees/new, abre automaticamente o modal.
+  useEffect(() => {
+    if (autoOpenNew) {
+      openNewEmployeeModal();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpenNew]);
+
+  const closeEditingModal = () => {
+    setEditingEmployee(null);
+    if (onCloseRedirectPath && location?.pathname !== onCloseRedirectPath) {
+      navigate(onCloseRedirectPath);
+    }
+  };
+
+  const closeEditing = () => {
+    setEditingEmployee(null);
+    if (onCloseRedirectPath && location.pathname !== onCloseRedirectPath) {
+      navigate(onCloseRedirectPath);
+    }
   };
 
   const handleSave = async () => {
@@ -798,7 +832,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ user }) => {
                 Matrícula: {editingEmployee.id || editingEmployee._id || '-'}
               </p>
             </div>
-            <button onClick={() => setEditingEmployee(null)} className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-sm hover:bg-slate-200 transition-all">
+            <button onClick={closeEditingModal} className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-sm hover:bg-slate-200 transition-all">
               <span className="material-symbols-outlined">close</span>Fechar
             </button>
           </div>
@@ -822,7 +856,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ user }) => {
           </div>
 
           <div className="p-8 bg-white dark:bg-surface-dark border-t border-slate-100 dark:border-border-dark flex items-center justify-end gap-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-            <button onClick={() => setEditingEmployee(null)} className="px-10 py-4 rounded-2xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 font-black text-sm uppercase tracking-widest hover:bg-slate-50 transition-all">
+            <button onClick={closeEditingModal} className="px-10 py-4 rounded-2xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 font-black text-sm uppercase tracking-widest hover:bg-slate-50 transition-all">
               Cancelar
             </button>
             <button onClick={handleSave} className="px-14 py-4 rounded-2xl bg-primary text-white font-black text-sm uppercase tracking-widest shadow-xl shadow-primary/30 transform active:scale-95 transition-all">

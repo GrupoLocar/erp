@@ -76,15 +76,15 @@ const Schedule: React.FC = () => {
         <div className="flex flex-wrap gap-2 items-center text-xs font-bold uppercase tracking-widest text-slate-400">
           <span>Comercial</span>
           <span className="material-symbols-outlined text-sm">chevron_right</span>
-          <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg">Escala</span>
+          <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg">Escala Programados</span>
         </div>
         
         <div className="flex flex-wrap justify-between items-end gap-6">
           <div className="space-y-2">
             <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">
-              Escala de Movimentadores
+              Escala Programados
             </h1>
-            <p className="text-lg text-slate-500 font-medium">Gerencie a escala da equipe de movimentadores</p>
+            <p className="text-lg text-slate-500 font-medium">Gerencie a escala de serviços programados</p>
           </div>
         </div>
       </div>

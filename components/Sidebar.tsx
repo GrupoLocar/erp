@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { User, Role } from '../types';
@@ -22,9 +21,10 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
       icon: 'groups',
       role: 'Recursos Humanos' as Role,
       links: [
-        { label: 'Funcionários', path: '/rh/employees' },
-        { label: 'Candidatos', path: '/rh/candidates' },
-        { label: 'Treinamentos', path: '/rh/training' },
+        { label: 'Cadastro de Funcionários', path: '/rh/employees' },
+        { label: 'Dashboard', path: '/rh/dashboard' },
+        { label: 'Gestão de Candidatos', path: '/rh/candidates' },
+        { label: 'Entrevista', path: '/rh/training' },
       ]
     },
     {
@@ -33,9 +33,9 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
       icon: 'badge',
       role: 'Departamento Pessoal' as Role,
       links: [
-        { label: 'Folha de Pagamento', path: '/dp/payroll' },
-        { label: 'Benefícios', path: '/dp/benefits' },
-        { label: 'Férias', path: '/dp/vacation' },
+        { label: 'Monitorar inicialização dos LOC\'s', path: '/dp/loc-init' },
+        { label: 'Imput de horários no CA', path: '/dp/ca-hours' },
+        { label: 'Controle de viagem para alimentação', path: '/dp/travel-food' },
       ]
     },
     {
@@ -44,21 +44,28 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
       icon: 'storefront',
       role: 'Comercial' as Role,
       links: [
-        { label: 'Escala', path: '/comercial/schedule' },
+        { label: 'Escala Programados', path: '/comercial/schedule' },
+        { label: 'Escala Concluída', path: '/comercial/completed-schedule' },
         { label: 'Cadastro de Clientes', path: '/comercial/clients' },
         { label: 'Cadastro de Filial', path: '/comercial/branches' },
+        { label: 'Cadastro de Fornecedores', path: '/comercial/suppliers' },
+        { label: 'PSL (Pedidos sem Loc)', path: '/comercial/psl' },
+        { label: 'Multas e Avarias', path: '/comercial/fines' },
         { label: 'Metas', path: '/comercial/goals' },
       ]
     },
     {
       id: 'financeiro',
       label: 'Financeiro',
-      icon: 'attach_money',
+      icon: 'account_balance_wallet',
       role: 'Financeiro' as Role,
       links: [
-        { label: 'Fluxo de Caixa', path: '/financeiro/cashflow' },
-        { label: 'Contas a Pagar', path: '/financeiro/payable' },
-        { label: 'Contas a Receber', path: '/financeiro/receivable' },
+        { label: 'Fluxo de caixa', path: '/financeiro/cash-flow' },
+        { label: 'Contas a Pagar', path: '/financeiro/accounts-payable' },
+        { label: 'Contas a Receber', path: '/financeiro/accounts-receivable' },
+        { label: 'Controle de diárias', path: '/financeiro/diaries' },
+        { label: 'Emissão de Nota', path: '/financeiro/invoice-issue' },
+        { label: 'Medição', path: '/financeiro/measurement' },
       ]
     },
     {
@@ -67,14 +74,14 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
       icon: 'analytics',
       role: 'Controladoria' as Role,
       links: [
-        { label: 'Relatórios Fiscais', path: '/controladoria/reports' },
-        { label: 'Auditoria', path: '/controladoria/audit' },
-        { label: 'BI & Analytics', path: '/controladoria/bi' },
+        { label: 'Emissão de Faturas', path: '/controladoria/invoicing' },
+        { label: 'Controle de Despesas', path: '/controladoria/expenses' },
+        { label: 'Controle de Indevidos', path: '/controladoria/improper-charges' },
+        { label: 'Emissão de Nota Fiscal', path: '/controladoria/tax-invoice' },
       ]
     }
   ];
 
-  // Filter items: Admins see all, others see only their specific role item
   const filteredMenuItems = menuItems.filter(item => 
     user.role === "Admin" || user.role === item.role
   );
@@ -119,7 +126,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, onLogout }) => {
                 </span>
               </button>
               
-              <div className={`flex flex-col ml-9 mt-1 gap-1 border-l-2 border-slate-100 dark:border-slate-800 overflow-hidden transition-all duration-300 ${openSubmenu === item.id ? 'max-h-96' : 'max-h-0'}`}>
+              <div className={`flex flex-col ml-9 mt-1 gap-1 border-l-2 border-slate-100 dark:border-slate-800 overflow-hidden transition-all duration-300 ${openSubmenu === item.id ? 'max-h-[500px]' : 'max-h-0'}`}>
                 {item.links.map(link => (
                   <NavLink 
                     key={link.path}

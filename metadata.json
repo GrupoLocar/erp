@@ -1,6 +1,6 @@
 {
-  "name": "ERP Empresarial Pro",
-  "description": "A comprehensive Enterprise Resource Planning (ERP) system for employee management, scheduling, and commercial operations, featuring a modern UI and real-time data simulation.",
+  "name": "ERP Grupo Locar",
+  "description": "ERP Grupo Locar é uma plataforma corporativa integrada destinada à gestão operacional, administrativa e estratégica do Grupo Locar. Seu objetivo é centralizar informações, padronizar processos internos e fornecer indicadores confiáveis para tomada de decisão.",
   "requestFramePermissions": [
     "camera",
     "microphone"
