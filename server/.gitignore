@@ -4,7 +4,6 @@
 node_modules/
 .pnp
 .pnp.js
- 
 dist/
 build/
 .cache/
@@ -12,9 +11,16 @@ build/
 .vercel
 .vercel/
 
+# Data
+public/uploads/
+SincronizarBancosDeDados.txt
+
+# Excel
+*.xlsx
+
 # Cobertura de testes
 coverage/
- 
+
 # Logs
 *.log
 npm-debug.log*
@@ -23,7 +29,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 # =========================================
-# AMBIENTES (.env NUNCA DEVE IR PRO GITHUB)
+# AMBIENTES
 # =========================================
 *.env
 .env
@@ -45,19 +51,21 @@ Thumbs.db
 *.swo
 .idea/
 .vscode/
- 
+
 # =========================================
-# DADOS LOCAIS QUE NÃO DEVEM SUBIR
-# (mantém data/, mas ignora export/excel)
+# export/excel
 # =========================================
- 
-# Dentro de C:\Locar\data\
 data/export/
 data/excel/
- 
+
 # Dentro de C:\Locar\backend\data\
+backend/data/
 backend/data/export/
- 
+
+# Scripts
+scripts/
+backend/scripts/
+
 # =========================================
 # BINÁRIOS / COMPILADOS / CACHE
 # =========================================
@@ -69,13 +77,21 @@ backend/data/export/
 *.class
 *.o
 *.obj
- 
+
 # Python cache
 __pycache__/
+.py
+*.py
 *.pyc
 *.pyo
 *.pyd
- 
+*.ps1
+*.pm2
+
+# Arquivos de Lote
+.bat
+*.bat
+
 # Compactados temporários
 *.zip
 *.tar

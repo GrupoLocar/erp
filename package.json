@@ -1,5 +1,5 @@
 {
-  "name": "erp-empresarial-pro",
+  "name": "erp-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,14 +9,33 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
+    "jspdf": "^4.0.0",
+    "jspdf-autotable": "^5.0.7",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.1.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-router-dom": "^7.11.0"
+    "react-router-dom": "^7.11.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
-  }
+  },
+  "description": "<div align=\"center\"> <img width=\"1200\" height=\"475\" alt=\"GHBanner\" src=\"https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6\" /> </div>",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupoLocar/erp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrupoLocar/erp/issues"
+  },
+  "homepage": "https://github.com/GrupoLocar/erp#readme"
 }
