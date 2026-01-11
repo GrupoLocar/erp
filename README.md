@@ -1,7 +1,7 @@
 # 🚧 ERP Grupo Locar
 
-Sistema web em desenvolvimento para a empresa **Grupo Locar**, com foco na integração de operações empresariais, controle de processos e gestão de equipes.  
-O projeto visa centralizar dados operacionais, administrativos e estratégicos em uma única plataforma corporativa.
+## Visão Geral
+**ERP Grupo Locar** é uma plataforma corporativa integrada destinada à gestão operacional, administrativa e estratégica do Grupo Locar. Seu objetivo é centralizar informações, padronizar processos internos e fornecer indicadores confiáveis para tomada de decisão.
 
 Desenvolvido com **Node.js**, **React**, **MongoDB**, e autenticação via **JWT ou Cookies de Sessão**.
 
